@@ -24,7 +24,7 @@ pipeline {
                    sh 'docker login -u malickguess -p ${dockerhubpwd}'
 
 }
-                   sh 'docker push javatechie/devops-integration'
+                   sh 'docker push malickguess/devops-integration'
                 }
             }
         }
