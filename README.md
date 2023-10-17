@@ -1,6 +1,8 @@
 # devops-automation
-
-
+Prerequisites:
+ - docker installed on the host and access to a docker hub account
+ - jenkins
+ - git for version control
 
 Setting up your environment:
 Install the Docker Pipelines plugin on Jenkins:
@@ -53,5 +55,6 @@ To address this problem execute the below command on your Jenkins server termina
       sudo systemctl restart docker
       sudo service jenkins restart`
   - if after a new attempt issue is still occuring , reboot the host
+    `reboot`
      
 
