@@ -13,19 +13,22 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t malickguess/devops-integration .'
+                    sh 'docker build -t malickguess/devops-automation .'
                 }
             }
         }
         stage('Push image to Hub'){
-            steps{
-                script{
-                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhub-pwd')]) {
-                   sh 'docker login -u malickguess -p ${dockerhubpwd}'
-
-}
-                   sh 'docker push malickguess/devops-integration'
-                }
+            environment {
+            DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+            }
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+              }
+            }
+            stage('Push') {
+              steps {
+                sh 'docker push malickguess/devops-automation'
+              }
             }
         }
 
